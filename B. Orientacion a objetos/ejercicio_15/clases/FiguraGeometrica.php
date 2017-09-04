@@ -1,26 +1,30 @@
 <?php
+    abstract class  FiguraGeometrica{
 
-    class FiguraGeometrica{
         protected $_color;
         protected $_perimetro;
         protected $_superficie;
 
-        public __contruct(){
-            $this->color = "Sin asignar";
-            $this->perimetro = "Sin agisnar";
-            $this->superficie = "Sin asignar";
-        }
+        public function __construct(){
 
-        public abstract function Dibujar();
-        protected abstract function MostrarDatos();
-
-        public function SetColor($color){
-            $this->_color = $color;
+            $this->_color = "Black";
         }
 
         public function GetColor(){
+
             return $this->_color;
         }
 
+        public function SetColor($color){
+
+            $this->_color = $color;
+        }
+
+        public function ToString(){
+
+        }
+
+        public abstract function Dibujar();
+        protected abstract function CalcularDatos();
     }
 ?>
