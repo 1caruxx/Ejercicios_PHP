@@ -1,0 +1,5 @@
+1. SELECT * FROM `productos` ORDER BY `pnombre` ASC
+2. SELECT * FROM `provedores` WHERE `localidad`='Quilmes'
+3. SELECT * FROM `envios` WHERE `cantidad`>=200 && `cantidad`<=300
+4. SELECT sum(`cantidad`) FROM `envios` WHERE 1
+5. SELECT `pnumero` FROM `envios` LIMIT 3
