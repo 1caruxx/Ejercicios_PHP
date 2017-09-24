@@ -30,7 +30,7 @@ var Main;
     Main.EliminarProducto = EliminarProducto;
     function ModificarProducto(codBarra, nombre) {
         document.getElementById("codBarra").value = codBarra.toString();
-        document.getElementById("nombre").value = nombre;
+        document.getElementById("nombre").value = nombre.toString();
         document.getElementById("hdnQueHago").value = "modificar";
         document.getElementById("codBarra").readOnly = true;
     }

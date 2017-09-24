@@ -67,10 +67,11 @@ class Producto
 		//ESCRIBO EN EL ARCHIVO
 		$cant = fwrite($ar, $obj->ToString());
 		
-		if($cant > 0)
-		{
+		if($cant > 0) {
+
 			$resultado = TRUE;			
 		}
+
 		//CIERRO EL ARCHIVO
 		fclose($ar);
 		
@@ -86,18 +87,18 @@ class Producto
 		$tabla = "productos";
 		
 		//ABRO LA CONEXION
-		//$con = mysqli_connect("localhost" , "root" , "" ,"productos");
+		//$conexcion = mysqli_connect("localhost" , "root" , "" ,"productos");
 		$conexcion = new MySQLi($host , $user , $pass , $base);
 		
-		//ESCRIBO EN EL ARCHIVO
+		//CREO LA CONSULTA
 		$INSERT = "INSERT INTO {$tabla} (codBarra, nombre, pathFoto)
 		VALUES({$obj->codBarra}, '{$obj->nombre}', '{$obj->pathFoto}')";
 
-		//mysql_db_query("productos", $sql);
+		//mysql_db_query($base, $INSERT);
 		$conexcion->query($INSERT);
 		
 		//CIERRO LA CONEXCION
-		//mysqli_close($con);
+		//mysqli_close($conexcion);
 		$conexcion->close();
 		
 		return $resultado;
@@ -120,10 +121,10 @@ class Producto
 				$ListaDeProductosLeidos[] = new Producto($productos[0], $productos[1],$productos[2]);
 			}
 		}
+
 		fclose($archivo);
 		
 		return $ListaDeProductosLeidos;
-		
 	}
 	public static function TraerDeBase() {
 
@@ -135,9 +136,12 @@ class Producto
 		$tabla = "productos";
 		$productos = array();
 
+		//$conexcion = mysqli_connect("localhost" , "root" , "" ,"productos");
 		$conexcion = new MySQLi($host , $user , $pass , $base);
 		$SELECT = "SELECT * FROM {$tabla} WHERE 1";
+		//mysql_db_query($base, $SELECT);
 		$elementos = $conexcion->query($SELECT);
+		//mysqli_close($conexcion);
 		$conexcion->close();
 
 		//var_dump($elementos);
@@ -157,41 +161,79 @@ class Producto
 		
 		//OBTENGO TODOS LOS PRODUCTOS
 		$productos = Producto::TraerTodosLosProductos();
+
 		//RECORRO Y BUSCO LA IMAGEN ANTERIOR. REEMPLAZO POR EL OBJ. MODIFICADO
 		foreach($productos as $item) {
 
-			if($item->codBarra == $obj->codBarra) {
+			if(trim($item->codBarra) == trim($obj->codBarra)) {
 
 				$imagen = $item->pathFoto;
-				$productos[$contador] == $obj;
+				$productos[$contador] = $obj;
 				break;
 			}
 
 			$contador++;
 		}
+
 		//BORRO LA IMAGEN ANTERIOR
-		unlink($imagen);
-		
+		$ruta = "archivos/".$imagen;
+		Archivo::Borrar($ruta);
+
 		//ABRO EL ARCHIVO
 		$ar = fopen("archivos/productos.txt" , "w");
+
 		//ESCRIBO EN EL ARCHIVO
 		foreach($productos as $producto) {
 
 			fwrite($ar , $producto->tostring());
 		}
+
 		//CIERRO EL ARCHIVO
 		fclose($ar);
 		
 		return $resultado;
 	}
+	public static function ModificarEnBase($obj) {
+
+		$resultado = true;
+		$host = "localhost";
+		$user = "root";
+		$pass = "";
+		$base = "productos";
+		$tabla = "productos";
+		$productos = Producto::TraerDeBase();
+
+		$conexcion = new MySQLi($host , $user , $pass , $base);
+
+		foreach($productos as $item) {
+
+			if(trim($item->codBarra) == trim($obj->codBarra)) {
+
+				$imagen = $item->pathFoto;
+				break;
+			}
+				
+			$contador++;
+		}
+		
+		//BORRO LA IMAGEN ANTERIOR
+		$ruta = "archivos/".$imagen;
+		Archivo::Borrar($ruta);
+
+		$UPDATE = "UPDATE {$tabla} SET nombre='{$obj->nombre}',pathFoto='{$obj->pathFoto}' WHERE codBarra={$obj->codBarra}";
+		$conexcion->query($UPDATE);
+		$conexcion->close();
+
+		return $resultado;
+	}
 	public static function Eliminar($codBarra)
 	{
 		$resultado = TRUE;
-		
 		$contador=0;
 				
 		//OBTENGO TODOS LOS PRODUCTOS
 		$productos = Producto::TraerTodosLosProductos();
+
 		//RECORRO Y BUSCO LA IMAGEN ANTERIOR.
 		foreach($productos as $item) {
 					
@@ -204,19 +246,20 @@ class Producto
 					
 			$contador++;
 		}
+
 		//BORRO LA IMAGEN ANTERIOR
-
 		$ruta = "archivos/".$imagen;
-
 		Archivo::Borrar($ruta);
 				
 		//ABRO EL ARCHIVO
 		$ar = fopen("archivos/productos.txt" , "w");
+
 		//ESCRIBO EN EL ARCHIVO
 		foreach($productos as $producto) {
 		
 			fwrite($ar , $producto->tostring());
 		}
+
 		//CIERRO EL ARCHIVO
 		fclose($ar);
 				
@@ -232,6 +275,7 @@ class Producto
 		$tabla = "productos";
 		$productos = Producto::TraerDeBase();
 
+		//$conexcion = mysqli_connect("localhost" , "root" , "" ,"productos");
 		$conexcion = new MySQLi($host , $user , $pass , $base);
 		$DELETE = "DELETE FROM {$tabla} WHERE codBarra={$codBarra}";
 
@@ -245,7 +289,9 @@ class Producto
 
 		Archivo::Borrar("archivos/".$imagen);
 
+		//mysql_db_query($base, $DELETE);
 		$conexcion->query($DELETE);
+		//mysqli_close($conexcion);
 		$conexcion->close();
 
 		return $resultado;

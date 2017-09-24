@@ -28,7 +28,7 @@ switch($queHago){
 				<td>".$prod->nombre."</td>
 				<td><img src='archivos/".$prod->pathFoto."' width='100px' height='100px'/></td>
 				<td>
-					<input type='button' value='MODIFICAR' onclick='Main.ModificarProducto(".$prod->codBarra.",".$prod->nombre.")'/><br/>
+					<input type='button' value='MODIFICAR' onclick='Main.ModificarProducto(".$prod->codBarra.",\"".$prod->nombre."\")'/><br/>
 					<input type='button' value='ELIMINAR' onclick='Main.EliminarProducto(".$prod->codBarra.")'/>
 				</td>
 			</tr>";
@@ -37,7 +37,7 @@ switch($queHago){
 							<td>".$prod->GetNombre()."</td>
 							<td><img src='archivos/".$prod->GetPathFoto()."' width='100px' height='100px'/></td>
 							<td>
-								<input type='button' value='MODIFICAR' onclick='Main.ModificarProducto(".$prod->GetCodBarra().",".$prod->GetNombre().")'/><br/>
+								<input type='button' value='MODIFICAR' onclick='Main.ModificarProducto(".$prod->GetCodBarra().",\"".$prod->GetNombre()."\")'/><br/>
 								<input type='button' value='ELIMINAR' onclick='Main.EliminarProducto(".$prod->GetCodBarra().")'/>
 							</td>
 						</tr>";*/
@@ -53,8 +53,16 @@ switch($queHago){
 	case "agregar":
 	case "modificar":
 
-		$res = Archivo::Subir();
+		if($_POST['codBarra'] && $_POST['nombre']) {
 
+			$res = Archivo::Subir();
+		}
+		else {
+
+			$res["Exito"] = false;
+			$res["Mensaje"] = "No ha completado los campos codigo de barra o nombre";
+		}
+		
 		if(!$res["Exito"]){
 			echo $res["Mensaje"];
 			break;
@@ -80,8 +88,15 @@ switch($queHago){
 			}
 		}
 
-		if($queHago === "modificar"){
+		/*if($queHago === "modificar"){
 			if(!Producto::Modificar($p)){
+				echo "Lamentablemente ocurrio un error y no se pudo escribir en el archivo.";
+				break;
+			}
+		}*/
+
+		if($queHago === "modificar"){
+			if(!Producto::ModificarEnBase($p)){
 				echo "Lamentablemente ocurrio un error y no se pudo escribir en el archivo.";
 				break;
 			}
