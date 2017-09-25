@@ -167,7 +167,7 @@ class Producto
 
 			if(trim($item->codBarra) == trim($obj->codBarra)) {
 
-				$imagen = $item->pathFoto;
+				$imagen = trim($item->pathFoto);
 				$productos[$contador] = $obj;
 				break;
 			}
@@ -209,7 +209,7 @@ class Producto
 
 			if(trim($item->codBarra) == trim($obj->codBarra)) {
 
-				$imagen = $item->pathFoto;
+				$imagen = trim($item->pathFoto);
 				break;
 			}
 				
@@ -239,7 +239,7 @@ class Producto
 					
 			if($item->codBarra == $codBarra) {
 					
-				$imagen = $item->pathFoto;
+				$imagen = trim($item->pathFoto);
 				unset($productos[$contador]);
 				break;
 			}
@@ -250,7 +250,7 @@ class Producto
 		//BORRO LA IMAGEN ANTERIOR
 		$ruta = "archivos/".$imagen;
 		Archivo::Borrar($ruta);
-				
+
 		//ABRO EL ARCHIVO
 		$ar = fopen("archivos/productos.txt" , "w");
 
@@ -283,7 +283,7 @@ class Producto
 
 			if($item->codBarra = $codBarra) {
 
-				$imagen = $item->pathFoto;
+				$imagen = trim($item->pathFoto);
 			}
 		}
 
