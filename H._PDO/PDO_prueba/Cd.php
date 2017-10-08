@@ -3,9 +3,10 @@
     class Cd {
 
         //El nombre de los atributos debe coincidir con el nombre de los campos de mi base de datos
-        private $titel;
-        private $interpret;
-        private $jahr;
+        public $titel;
+        public $interpret;
+        public $jahr;
+        public $id;
 
         public function ToString() {
 
