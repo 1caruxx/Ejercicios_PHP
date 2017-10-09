@@ -3,9 +3,9 @@ class Producto
 {
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
-	private $codBarra;
- 	private $nombre;
-  	private $pathFoto;
+	public $codBarra;
+	public $nombre;
+	public $pathFoto;
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//
@@ -103,6 +103,23 @@ class Producto
 		
 		return $resultado;
 	}
+	public static function GuardarEnBasePDO($obj) {
+
+		$datos = "mysql:host=localhost;dbname=productos";
+		$user = "root";
+		$pass = "";
+		$tabla = "productos";
+		$consulta = "INSERT INTO {$tabla} (codBarra, nombre, pathFoto)
+		VALUES({$obj->codBarra}, '{$obj->nombre}', '{$obj->pathFoto}')";
+
+		$conexcion = new PDO($datos, $user , $pass);
+		$resultados = $conexcion->prepare($consulta);
+		$conexcion = null;
+
+		$resultados->execute();
+		
+		return true;
+	}
 	public static function TraerTodosLosProductos()
 	{
 
@@ -153,6 +170,23 @@ class Producto
 		}
 
 		return $productos;
+	}
+	public static function TraerDeBasePDO() {
+
+		$datos = "mysql:host=localhost;dbname=productos";
+		$user = "root";
+		$pass = "";
+		$tabla = "productos";
+		$consulta = "SELECT * FROM {$tabla}";
+
+		$conexcion = new PDO($datos, $user , $pass);
+		$resultados = $conexcion->prepare($consulta);
+		$conexcion = null;
+
+		$resultados->setfetchmode(PDO::FETCH_INTO , new Producto);
+		$resultados->execute();
+		
+		return $resultados;
 	}
 	public static function Modificar($obj)
 	{
@@ -226,6 +260,34 @@ class Producto
 
 		return $resultado;
 	}
+	public static function ModificarEnBasePDO($obj) {
+
+		$datos = "mysql:host=localhost;dbname=productos";
+		$user = "root";
+		$pass = "";
+		$tabla = "productos";
+		$consulta = "UPDATE {$tabla} SET nombre='{$obj->nombre}',pathFoto='{$obj->pathFoto}' WHERE codBarra={$obj->codBarra}";
+		$productos = Producto::TraerDeBasePDO();
+
+		foreach($productos as $item) {
+
+			if($item->codBarra == $obj->codBarra) {
+
+				$imagen = $item->pathFoto;
+				break;
+			}
+		}
+
+		Archivo::Borrar("./archivos/".$imagen);
+
+		$conexcion = new PDO($datos , $user , $pass);
+		$resultados = $conexcion->prepare($consulta);
+		$conexcion = null;
+		$resultados->execute();
+
+		return true;
+
+	}
 	public static function Eliminar($codBarra)
 	{
 		$resultado = TRUE;
@@ -295,6 +357,33 @@ class Producto
 		$conexcion->close();
 
 		return $resultado;
+	}
+	public static function EliminarDeBasePDO($codBarra) {
+
+		$datos = "mysql:host=localhost;dbname=productos";
+		$user = "root";
+		$pass = "";
+		$tabla = "productos";
+		$consulta = "DELETE FROM {$tabla} WHERE codBarra={$codBarra}";
+		$productos = Producto::TraerDeBasePDO();
+
+		foreach($productos as $item) {
+
+			if($item->codBarra == $codBarra) {
+
+				$imagen = trim($item->pathFoto);
+				break;
+			}
+		}
+
+		Archivo::Borrar("archivos/".$imagen);
+
+		$conexcion = new PDO($datos, $user , $pass);
+		$resultados = $conexcion->prepare($consulta);
+		$conexcion = null;
+		$resultados->execute();
+		
+		return true;
 	}
 //--------------------------------------------------------------------------------//
 }

@@ -9,7 +9,8 @@ switch($queHago){
 	case "mostrarGrilla":
 	
 		//$ArrayDeProductos = Producto::TraerTodosLosProductos();
-		$ArrayDeProductos = Producto::TraerDeBase();
+		//$ArrayDeProductos = Producto::TraerDeBase();
+		$ArrayDeProductos = Producto::TraerDeBasePDO();
 
 		$grilla = '<table class="table">
 					<thead style="background:rgb(14, 26, 112);color:#fff;">
@@ -82,7 +83,7 @@ switch($queHago){
 		}*/
 
 	    if($queHago === "agregar"){
-			if(!Producto::GuardarEnBase($p)){
+			if(!Producto::GuardarEnBasePDO($p)){
 				echo "Error al generar archivo";
 				break;
 			}
@@ -96,7 +97,7 @@ switch($queHago){
 		}*/
 
 		if($queHago === "modificar"){
-			if(!Producto::ModificarEnBase($p)){
+			if(!Producto::ModificarEnBasePDO($p)){
 				echo "Lamentablemente ocurrio un error y no se pudo escribir en el archivo.";
 				break;
 			}
@@ -112,7 +113,7 @@ switch($queHago){
 		/*if(!Producto::Eliminar($codBarra)){
 			$mensaje = "Lamentablemente ocurrio un error y no se pudo escribir en el archivo.";
 		}*/
-		if(!Producto::EliminarDeBase($codBarra)){
+		if(!Producto::EliminarDeBasePDO($codBarra)){
 			$mensaje = "Lamentablemente ocurrio un error y no se pudo escribir en el archivo.";
 		}
 		else{
