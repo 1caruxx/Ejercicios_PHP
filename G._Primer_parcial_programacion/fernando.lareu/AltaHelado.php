@@ -10,5 +10,5 @@
     $helado = new Helado($sabor , $precio , $foto);
 
     Helado::Guardar($helado , $foto);
-
+    move_uploaded_file($_FILES["foto"]["tmp_name"] , "./heladosImagen/".$foto);
 ?>

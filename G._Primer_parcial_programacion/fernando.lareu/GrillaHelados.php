@@ -13,7 +13,7 @@
 
         $lista = Helado::TraerHelados();
 
-        $string = "<table>
+        $string = "<table border='1'>
                         <tbody>
                             <thead>
                                 <th>Sabor</th>
@@ -26,18 +26,13 @@
                                     $string .= "<tr>
                                                     <td>".$item->getsabor()."</td>
                                                     <td>".$item->PrecioMasIva()."</td>
-                                                    <td><img src'./archivos/'".$item->getfoto()."/></td>
-                                                </tr>"
-
+                                                    <td><img src=\"".trim($item->getfoto())."\"/></td>
+                                                </tr>";
                                 }
-
              $string .= "</tbody>
                     </table>";
 
-
-
-
-
+        echo $string;
     ?>
 </body>
 </html>

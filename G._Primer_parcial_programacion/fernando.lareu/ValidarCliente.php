@@ -4,7 +4,7 @@
 
     $correo = $_POST["correo"];
     $clave = $_POST["clave"];
-    $contador == 0;
+    $contador = 0;
 
     $listado = TraerClientes();
 
@@ -14,12 +14,13 @@
 
             if(trim($item->GetClave()) == $clave) {
 
-                return "Cliente Logeado: ".$item->GetNombre();
+                echo "Cliente Logeado: ".$item->GetNombre();
+                break;
 
             }
             else {
 
-                return "Contrasenia incorrecta";
+                echo "Contrasenia incorrecta";
             }
 
         }
@@ -29,16 +30,14 @@
 
     if($contador == count($listado)) {
 
-        return  "Cliente inexistente";
+        echo  "Cliente inexistente";
     }
 
     function TraerClientes() {
 
-        $clientes = array();
-
         if(!@$archivo = fopen("./clientes/clientesActuales.txt" , "r")) {
 
-            echo "no se ha podido leer el archivo".
+            echo "no se ha podido leer el archivo";
         }
         else {
 
@@ -60,5 +59,4 @@
             return $listaDeClientes;
         }
     }
-
 ?>

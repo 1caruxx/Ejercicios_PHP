@@ -15,7 +15,7 @@
 
         public function GetFoto() {
             
-             return $this->_foto;
+             return "./heladosImagen/".$this->_foto;
         }
 
         public function __construct($sabor , $precio , $foto = null) {
@@ -53,7 +53,7 @@
 
             $retorno = false;
 
-            if(!@$archivo = fopen("./heladosArchivo/helados.txt" , "w")) {
+            if(!@$archivo = fopen("./heladosArchivo/helados.txt" , "a")) {
 
                 echo "No se pudo abrir el archivo";
             }
@@ -74,11 +74,9 @@
 
         public static function TraerHelados() {
             
-            $helados = array();
-            
             if(!@$archivo = fopen("./heladosArchivo/helados.txt" , "r")) {
             
-                  echo "no se ha podido leer el archivo".
+                  echo "no se ha podido leer el archivo";
             }
             else {
 
@@ -95,7 +93,6 @@
                         $listaDehelados[] = new Helado($helados[0] , $helados[1] , $helados[2]);
                     }
                 }
-
 
                 fclose($archivo);
                 return $listaDehelados;

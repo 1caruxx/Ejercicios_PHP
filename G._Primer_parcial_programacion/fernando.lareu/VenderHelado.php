@@ -11,8 +11,9 @@
     }
     else {
 
-        $helado = new Helado($sabor , $cantidad);
+        $precio = 11.00;
+        $helado = new Helado($sabor , $precio);
 
-        return $helado->PrecioMasIva();
+        return $helado->PrecioMasIva()*$cantidad;
     }
 ?>

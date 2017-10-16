@@ -38,7 +38,7 @@
 
             $retorno = false;
 
-            if(!@$archivo = fopen("./clientes/clientesActuales.txt" , "w")) {
+            if(!@$archivo = fopen("./clientes/clientesActuales.txt" , "a")) {
 
                 echo "Error al guardar";
             }
