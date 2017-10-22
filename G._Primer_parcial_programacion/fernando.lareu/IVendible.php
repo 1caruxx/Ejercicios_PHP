@@ -2,6 +2,6 @@
 
     interface IVendible {
 
-        function PrecioMasIva();
+        function PreciosMasIVA();
     }
 ?>

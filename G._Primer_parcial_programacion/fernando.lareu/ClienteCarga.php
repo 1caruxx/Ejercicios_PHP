@@ -9,4 +9,5 @@
     $cliente = new Cliente($nombre , $correo , $clave);
 
     Cliente::GuardarEnArchivo($cliente);
+
 ?>

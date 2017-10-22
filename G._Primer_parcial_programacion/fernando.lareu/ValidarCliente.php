@@ -4,59 +4,22 @@
 
     $correo = $_POST["correo"];
     $clave = $_POST["clave"];
+    $clientes = Cliente::ObtenerClientes();
     $contador = 0;
 
-    $listado = TraerClientes();
+    foreach($clientes as $item) {
 
-    foreach($listado as $item) {
+        if($item->GetCorreo()==$correo && $item->getClave()==$clave) {
 
-        if(trim($item->GetCorreo()) == $correo) {
-
-            if(trim($item->GetClave()) == $clave) {
-
-                echo "Cliente Logeado: ".$item->GetNombre();
-                break;
-
-            }
-            else {
-
-                echo "Contrasenia incorrecta";
-            }
-
+            echo "Cliente logeado: ".$item->getNombre();
+            break;
         }
 
         $contador++;
     }
 
-    if($contador == count($listado)) {
+    if(count($clientes) == $contador) {
 
-        echo  "Cliente inexistente";
-    }
-
-    function TraerClientes() {
-
-        if(!@$archivo = fopen("./clientes/clientesActuales.txt" , "r")) {
-
-            echo "no se ha podido leer el archivo";
-        }
-        else {
-
-            while(!feof($archivo)) {
-
-                $archAux = fgets($archivo);
-                $clientes = explode(" - ", $archAux);
-                $clientes[0] = trim($clientes[0]);
-                $clientes[1] = trim($clientes[1]);
-                $clientes[2] = trim($clientes[2]);
-
-                if($clientes[0] != ""){
-
-                    $listaDeClientes[] = new Cliente($clientes[0] , $clientes[1] , $clientes[2]);
-                }
-            }
-
-            fclose($archivo);
-            return $listaDeClientes;
-        }
+        echo "Cliente inexistente.";
     }
 ?>

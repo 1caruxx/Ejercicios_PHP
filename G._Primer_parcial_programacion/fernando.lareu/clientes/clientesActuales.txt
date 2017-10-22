@@ -1,4 +1,4 @@
-fulanito - miguel@hotmail.com - 2
-fernando - fernando@hotmail.com - 1
-pedro - pedro@hotmail.com - 3
-
+miguelito - m@hotmail.com - 1234
+fernando - f@hotmail.com - 1234
+pedro - p@hotmail.com - 1234
+rodrigo - r@hotmail.com - 1234

@@ -4,16 +4,21 @@
 
     $sabor = strtolower($_GET["sabor"]);
     $cantidad = $_GET["cantidad"];
-    
-    if($sabor!="chocolate" && $sabor!="vainilla") {
 
-        return "No se ha encontrado el sabor";
-    }
-    else {
+    switch($sabor) {
 
-        $precio = 11.00;
-        $helado = new Helado($sabor , $precio);
+        case 'chocolate':
+        case 'vainilla':
+        case 'frutilla':
+        case 'menta':
+        case 'guacamole':
 
-        return $helado->PrecioMasIva()*$cantidad;
+            $helado = new Helado($sabor , 20);
+
+            echo $helado->PreciosMasIVA()*$cantidad;
+            break;
+        
+        default:
+            echo "Sabor inexistente.";
     }
 ?>

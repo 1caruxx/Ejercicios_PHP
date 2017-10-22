@@ -11,28 +11,28 @@
 
         require_once "./Helado.php";
 
-        $lista = Helado::TraerHelados();
+        $helados = Helado::ObtenerHelados();
 
-        $string = "<table border='1'>
+        $grilla = "<table border='1'>
                         <tbody>
                             <thead>
                                 <th>Sabor</th>
                                 <th>Precio</th>
                                 <th>Imagen</th>
                             </thead>";
+        
+        foreach($helados as $item) {
 
-                                foreach($lista as $item) {
+            $grilla .= "<tr>
+                            <td>".$item->getsabor()."</td>
+                            <td>".$item->getprecio()."</td>
+                            <td><img src='./heladosImagen/".$item->GetImagen()."' width='50px' height='50px'/></td>
+                        </tr>";
+        }
 
-                                    $string .= "<tr>
-                                                    <td>".$item->getsabor()."</td>
-                                                    <td>".$item->PrecioMasIva()."</td>
-                                                    <td><img src=\"".trim($item->getfoto())."\"/></td>
-                                                </tr>";
-                                }
-             $string .= "</tbody>
-                    </table>";
-
-        echo $string;
+        $grilla .= "</tbody>
+                </table>";
+        echo $grilla;
     ?>
 </body>
 </html>

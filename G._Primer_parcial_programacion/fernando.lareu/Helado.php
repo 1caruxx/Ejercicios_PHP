@@ -2,30 +2,38 @@
 
     require_once "./IVendible.php";
 
-    class Helado implements IVendible{
+    class Helado implements Ivendible {
 
         private $_sabor;
         private $_precio;
-        private $_foto;
+        private $_imagen;
 
         public function GetSabor() {
 
             return $this->_sabor;
         }
 
-        public function GetFoto() {
-            
-             return "./heladosImagen/".$this->_foto;
+        public function GetPrecio() {
+
+            return $this->_precio;
+        }
+        public function GetImagen() {
+
+            return $this->_imagen;
         }
 
-        public function __construct($sabor , $precio , $foto = null) {
+        public function __construct($sabor , $precio , $imagen=null) {
 
             $this->_sabor = $sabor;
             $this->_precio = $precio;
-            $this->_foto = $foto;
+
+            if($imagen && $imagen!="") {
+
+                $this->_imagen = $imagen;
+            }
         }
 
-        public function PrecioMasIva() {
+        public function PreciosMasIVA() {
 
             return $this->_precio*1.21;
         }
@@ -34,68 +42,59 @@
 
             $helados = array();
 
-            array_push($helados , new Helado("Chocolate" , 2,5));
-            array_push($helados , new Helado("Frutilla" , 5));
-            array_push($helados , new Helado("Vainilla" , 4.5));
-            array_push($helados , new Helado("Durazno" , 5));
-            array_push($helados , new Helado("Guacamole" , 200));
+            array_push($helados , new Helado("Chocolate" , 20));
+            array_push($helados , new Helado("Vainilla" , 12.5));
+            array_push($helados , new Helado("Frutilla" , 10));
+            array_push($helados , new Helado("Menta" , 25));
+            array_push($helados , new Helado("Guacamole" , 500));
 
             return $helados;
         }
 
-        private function ToString()
-        {
+        public function ToString() {
 
-            return $this->_sabor." - ".$this->_precio." - ";
+            return "{$this->_sabor} - {$this->_precio} - {$this->_imagen}\r\n";
         }
 
-        public static function Guardar($helado , $foto) {
+        public static function GuardarEnArchivo($objeto) {
 
-            $retorno = false;
+            if(!@ $archivo = fopen("./heladosArchivo/helados.txt" , "a")) {
 
-            if(!@$archivo = fopen("./heladosArchivo/helados.txt" , "a")) {
-
-                echo "No se pudo abrir el archivo";
+                echo "No se ha podido abrir el archivo.";
             }
             else {
+                
+                fwrite($archivo , $objeto->tostring());
+                fclose($archivo);
 
-                $cantidad = fwrite($archivo , $helado->ToString().$foto."\r\n");
-
-                if($cantidad > 0) {
-
-                    $retorno = true;
-                }
-                    
-                fclose($archivo); 
-            }
-
-            return $retorno;
+                echo "Se ha cargado exitosamente.";
+            } 
         }
 
-        public static function TraerHelados() {
-            
-            if(!@$archivo = fopen("./heladosArchivo/helados.txt" , "r")) {
-            
-                  echo "no se ha podido leer el archivo";
+        public static function ObtenerHelados() {
+
+            $helados = array();
+            $stringAux = "";
+
+            if(!@ $archivo = fopen("./heladosArchivo/helados.txt" , "r")) {
+
+                echo "No se ha podido abrir el archivo.";
             }
             else {
 
                 while(!feof($archivo)) {
 
-                    $archAux = fgets($archivo);
-                    $helados = explode(" - ", $archAux);
-                    $helados[0] = trim($helados[0]);
-                    $helados[1] = trim($helados[1]);
-                    $helados[2] = trim($helados[2]);
-            
-                    if($helados[0] != ""){
+                    $stringAux =  trim(fgets($archivo));
+                    $helado = explode(" - " , $stringAux);
 
-                        $listaDehelados[] = new Helado($helados[0] , $helados[1] , $helados[2]);
+                    if($helado[0] != "") {
+
+                        array_push($helados , new Helado($helado[0] , $helado[1] , trim($helado[2])));
                     }
                 }
 
                 fclose($archivo);
-                return $listaDehelados;
+                return $helados;
             }
         }
     }
