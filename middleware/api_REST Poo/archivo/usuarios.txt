@@ -1,0 +1,4 @@
+fernando - root
+juansito - comun
+pedro - comun
+roberto - root
