@@ -1,0 +1,12 @@
+/*
+ * jwt.io
+ * https://github.com/firebase/php-jwt
+
+ISS: Quien creo el JWT
+SUB: razon por la que se creo.
+AUD: audiencia (android, web , etc)
+EXP: expira
+NDF: no usado antes
+IAT: Cuando fue creado antes
+JTI: id unico jwt
+*/
