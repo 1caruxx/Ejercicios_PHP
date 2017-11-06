@@ -6,7 +6,7 @@ Este repositorio contiene todos los ejercicios hechos a lo largo de la cursada d
 
 Los lenguajes tratados fueron:
 
-* <h5>PHP</h5>
+* <h4>PHP</h4>
 * SQL
 
 ## Temas vistos
@@ -21,7 +21,7 @@ Los lenguajes tratados fueron:
 
 ## IDE, Frameworks y programas utilizados
 
-* [Visual Studio Code](https://code.visualstudio.com/)
+* <i href="./ico/favicon.ico" width="10px" height="10px">[Visual Studio Code](https://code.visualstudio.com/)
 * [Xampp](https://www.apachefriends.org/es/index.html)
     -[Apache](https://www.apache.org/)
     -[phpMyAdmin](https://www.phpmyadmin.net/)
