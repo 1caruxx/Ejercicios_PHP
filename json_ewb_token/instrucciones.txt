@@ -1,0 +1,6 @@
+/*
+ * En un verbo aparte llamado login verifico que el usuario exista en mi base
+ * Si existe, devuelvo un token
+ * Si recibo en otro verbo aparte, verifico que sea valido
+ * si este es valido, paso a la eliminacion, modificaion etc.
+ */
