@@ -21,12 +21,26 @@ Los lenguajes tratados fueron:
 
 ## IDE, Frameworks y programas utilizados
 
-* <img src="./Z._img/favicon.ico" width="20px" height="20px"/>&nbsp;[Visual Studio CodeVisual Studio Code](https://code.visualstudio.com/)
-* [Xampp](https://www.apachefriends.org/es/index.html)
-    -[Apache](https://www.apache.org/)
-    -[phpMyAdmin](https://www.phpmyadmin.net/)
-* [Composer](https://getcomposer.org/)
-* [Slim](https://www.slimframework.com/)
+<table>
+    <tbody>
+        <tr>
+            <td><img src="./Z._img/vs.ico" width="20px" height="20px"/></td>
+            <td>[Visual Studio Code](https://code.visualstudio.com/)</td>
+        <tr>
+        <tr>
+            <td><img src="./Z._img/xampp.png" width="20px" height="20px"/></td>
+            <td>[Xampp](https://www.apachefriends.org/es/index.html)</td>
+        <tr>
+        <tr>
+            <td><img src="./Z._img/apache.png" width="20px" height="20px"/></td>
+            <td>[Apache](https://www.apache.org/)</td>
+        <tr>
+        <tr>
+            <td><img src="./Z._img/vs.ico" width="20px" height="20px"/></td>
+            <td>[Visual Studio Code](https://code.visualstudio.com/)</td>
+        <tr>
+    </tbody>
+</table>
 
 ## Autor
 
