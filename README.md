@@ -21,7 +21,7 @@ Los lenguajes tratados fueron:
 
 ## IDE, Frameworks y programas utilizados
 
-* <img src="./Z._img/favicon.ico" width="10px" height="10px"/>[Visual Studio CodeVisual Studio Code](https://code.visualstudio.com/)
+* <img src="./Z._img/favicon.ico" width="20px" height="20px"/>&nbsp;[Visual Studio CodeVisual Studio Code](https://code.visualstudio.com/)
 * [Xampp](https://www.apachefriends.org/es/index.html)
     -[Apache](https://www.apache.org/)
     -[phpMyAdmin](https://www.phpmyadmin.net/)
