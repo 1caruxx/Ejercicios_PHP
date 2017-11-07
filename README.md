@@ -25,19 +25,31 @@ Los lenguajes tratados fueron:
     <tbody>
         <tr>
             <td><img src="./Z._img/vs.ico" width="20px" height="20px"/></td>
-            <td>[Visual Studio Code](https://code.visualstudio.com/)</td>
+            <td><a href="https://code.visualstudio.com/">Visual Studio Code</a></td>
         <tr>
         <tr>
             <td><img src="./Z._img/xampp.png" width="20px" height="20px"/></td>
-            <td>[Xampp](https://www.apachefriends.org/es/index.html)</td>
+            <td><a href="https://www.apachefriends.org/es/index.html">Xampp</a></td>
         <tr>
         <tr>
             <td><img src="./Z._img/apache.png" width="20px" height="20px"/></td>
-            <td>[Apache](https://www.apache.org/)</td>
+            <td><a href="https://www.apache.org/">Apache</a></td>
         <tr>
         <tr>
-            <td><img src="./Z._img/vs.ico" width="20px" height="20px"/></td>
-            <td>[Visual Studio Code](https://code.visualstudio.com/)</td>
+            <td><img src="./Z._img/phpmyadmin.png" width="20px" height="20px"/></td>
+            <td><a href="https://www.phpmyadmin.net/">phpMyAdmin</a></td>
+        <tr>
+        <tr>
+            <td><img src="./Z._img/composer.png" width="20px" height="20px"/></td>
+            <td><a href="https://getcomposer.org/">Composer</a></td>
+        <tr>
+        <tr>
+            <td><img src="./Z._img/slim.jpg" width="20px" height="20px"/></td>
+            <td><a href="https://www.slimframework.com/">Slim</a></td>
+        <tr>
+        <tr>
+            <td><img src="./Z._img/jwt.png" width="20px" height="20px"/></td>
+            <td><a href="https://jwt.io/">JSON Web Token</a></td>
         <tr>
     </tbody>
 </table>
