@@ -6,7 +6,7 @@ Este repositorio contiene todos los ejercicios hechos a lo largo de la cursada d
 
 Los lenguajes tratados fueron:
 
-* <h4>PHP</h4>
+* <strong style="color:#e70077;">PHP</strong>
 * SQL
 
 ## Temas vistos
