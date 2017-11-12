@@ -21,11 +21,11 @@
             <div class="table-responsive">
                 <table class="table">
                     <tr>
-                        <td>Perfil</td>
-                        <td>Correo</td>
-                        <td>Clave</td>
-                        <td>Imagen</td>
-                        <td>Accion</td>
+                        <th>Perfil</th>
+                        <th>Correo</th>
+                        <th>Clave</th>
+                        <th>Imagen</th>
+                        <th>Accion</th>
                     </tr>
 
                     <?php
@@ -47,7 +47,7 @@
                                                     <td>".$usuario->GetCorreo()."</td>
                                                     <td>".$usuario->GetClave()."</td>
                                                     <td><img src='./src/BACKEND/img/".trim($usuario->GetFoto())."' width='50px' height='50px'/></td>
-                                                    <td><button type='button' class='btn btn-danger'>Eliminar</button><td><button type='button' class='btn btn-warning'>Modificar</button></td></td>
+                                                    <td><button type='button' class='btn btn-danger'>Eliminar</button><td><button type='button' class='btn btn-warning'>Modificar</button></td>
                                                 </tr>";
                         }
 

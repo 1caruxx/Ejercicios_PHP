@@ -60,7 +60,12 @@
         $this->delete("/baja[/]" , function($request , $response) {
             
             BaseDeDatos::Eliminar($request , $response);
-        })->add(\BaseDeDatos::class . ":VerificarExistencia");
+            return $response;
+        })->add(/*\BaseDeDatos::class . ":VerificarExistencia"*/function($request , $response , $next) {
+
+            Validadora::VerificarRoot($request , $response , $next , apache_request_headers());
+            return $response;
+        });
             
         $this->post("/modificacion[/]" , function($request , $response) {
             

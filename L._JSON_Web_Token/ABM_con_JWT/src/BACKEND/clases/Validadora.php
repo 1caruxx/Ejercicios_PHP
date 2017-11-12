@@ -5,11 +5,11 @@
 
     class Validadora {
 
-        public static function ValidarToken($request , $response , $next , $token) {
+        public static function ValidarToken($request , $response , $next , $header) {
 
             try {
             
-                $JWTdecodeado = JWT::decode($token["token"] , "12345" , array('HS256'));
+                $JWTdecodeado = JWT::decode($header["token"] , "12345" , array('HS256'));
                 $response = $next($request , $response);
             }
             catch(Exception $excepcion) {
@@ -71,6 +71,32 @@
             else {
 
                 $response = $next($request , $response);
+            }
+
+            return $response;
+        }
+
+        public static function VerificarRoot($request , $response , $next , $header) {
+
+            $JWTdecodeado = JWT::decode($header["token"] , "12345" , array('HS256'));
+
+            if($JWTdecodeado->perfil == "root") {
+
+                $response = $next($request , $response);
+            }
+            else {
+
+                if(!@ $archivo = fopen("./src/BACKEND/archivo/data.log" , "a")) {
+
+                    $response->getBody()->write("No se ha podido abrir el archivo.");
+                }
+                else {
+
+                    fwrite($archivo , "El usuario: ".$JWTdecodeado->correo." ha intentado eliminar a otro usuario a las: ".date("H:i:s")." el dia: ".date("d-m-Y")."\r\n");
+                    fclose($archivo);
+                }
+
+                $response->getBody()->write("No tiene permisos para eliminar.");
             }
 
             return $response;

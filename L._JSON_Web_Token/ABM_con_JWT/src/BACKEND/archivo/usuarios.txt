@@ -1,4 +1,3 @@
 fernando@hotmail.com - 111 - root - 234649.jpg
 miguel@hotmail.com - 444 - convencional - 185647.jpg
-pedro@hotmail.com - mod - convencional - 200050.jpg
-jorge@hotmail.com - 222 - convencional - 223734.jpg
+pedro@hotmail.com - prueba - convencional - 40542.jpeg

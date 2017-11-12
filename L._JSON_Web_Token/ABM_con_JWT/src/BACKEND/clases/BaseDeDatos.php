@@ -37,14 +37,111 @@
             return $retorno;
         }
 
-        public function VerificarExistencia($request , $response , $next) {
+        public function LogearAusuario($request , $response , $next) {
+
+            $usuario = $request->getParsedBody();
+
+            $datos = "mysql:host=localhost;dbname=jwt";
+            $user = "root";
+            $pass = "";
+            $usuario = $request->getParsedBody();
+
+            try {
+
+                $conexcion = new PDO($datos , $user , $pass);
+                $correo = $usuario["correo"];
+                $clave = $usuario["clave"];
+                $resultados = $conexcion->prepare("SELECT * FROM `usuarios` WHERE `_correo`='".$usuario["correo"]."' AND `_clave`='".$usuario["clave"]."'");
+                $resultados->execute();
+                $fila = $resultados->fetch(PDO::FETCH_ASSOC);
+
+                if($fila) {
+
+                    $key = "12345";
+                    $token = array(
+                        "correo" => $fila["_correo"],
+                        "clave" => $fila["_clave"],
+                        "perfil" => $fila["_perfil"]
+                    );
+    
+                    $jwt = JWT::encode($token, $key);
+    
+                    $response->getBody()->write($jwt);
+                    $response = $next($request , $response);
+                }
+                else {
+
+                    $response->getBody()->write("Usuario inexistente.\n");
+                }
+            }
+            catch(Exception $exception) {
+
+                $response->getBody()->write("Se ha atrapado una excepcion: ".$excepcion->getMessage());
+            }
             
-            return Validadora::VerificarExistencia(BaseDeDatos::ObtenerListado($response) , $request , $response , $next);
+            return $response;
+        }
+
+        public function VerificarExistencia($request , $response , $next) {
+
+            $datos = "mysql:host=localhost;dbname=jwt";
+            $user = "root";
+            $pass = "";
+            $usuario = $request->getParsedBody();
+
+            try {
+
+                $conexcion = new PDO($datos , $user , $pass);
+                $resultados = $conexcion->prepare("SELECT `_correo` FROM `usuarios` WHERE `_correo`='".$usuario["correo"]."'");
+                $resultados->execute();
+                $fila = $resultados->fetch(PDO::FETCH_ASSOC);
+
+                if($fila) {
+
+                    $response = $next($request , $response);
+                }
+                else {
+
+                    $response->getBody()->write("Usuario inexistente.\n");
+                }
+            }
+            catch(Exception $exception) {
+
+                $response->getBody()->write("Se ha atrapado una excepcion: ".$excepcion->getMessage());
+            }
+            
+            return $response;
         }
 
         public function VerificarQueNoExista($request , $response , $next) {
-            
-            return Validadora::VerificarQueNoExista(BaseDeDatos::ObtenerListado($response) , $request , $response , $next);
+
+            $datos = "mysql:host=localhost;dbname=jwt";
+            $user = "root";
+            $pass = "";
+            $usuario = $request->getParsedBody();
+
+            try {
+
+                $conexcion = new PDO($datos , $user , $pass);
+                $resultados = $conexcion->prepare("SELECT `_correo` FROM `usuarios` WHERE `_correo`='".$usuario["correo"]."'");
+                $resultados->execute();
+                $fila = $resultados->fetch(PDO::FETCH_ASSOC);
+
+                if($fila) {
+                    
+                    $response->getBody()->write("Este usuario ya fue previamente cargado.\n");
+                }
+                else {
+
+                    $response = $next($request , $response);
+                }
+            }
+            catch(Exception $exception) {
+
+                $response->getBody()->write("Se ha atrapado una excepcion: ".$excepcion->getMessage());
+            }
+
+            return $response;
         }
 
         public static function Agregar($request , $response , $_AR) {
