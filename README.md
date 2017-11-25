@@ -1,5 +1,3 @@
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="./Z._img/utnfra.png" style="width:100px;height:100px"/>
-
 # Programacion III
 
 Este repositorio contiene todos los ejercicios hechos a lo largo de la cursada de programacion III.
