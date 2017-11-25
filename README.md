@@ -1,3 +1,5 @@
+<img src="./Z._img/utnfra.png" width="100px" height="100px" style="position:absolute;right:20px;top:20px;"/>
+
 # Programacion III
 
 Este repositorio contiene todos los ejercicios hechos a lo largo de la cursada de programacion III.
@@ -18,6 +20,7 @@ Los lenguajes tratados fueron:
 * REST
 * SLIM
 * Middleware
+* JSON Web Token
 
 ## Tecnologias utilizadas
 
@@ -64,4 +67,4 @@ Los lenguajes tratados fueron:
 
 # License
 
-This project is licensed under the GNU General Public License v3.0 - see the LICENSE.md file for details.
+This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.
