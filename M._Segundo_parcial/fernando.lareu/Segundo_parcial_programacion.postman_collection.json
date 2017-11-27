@@ -1,0 +1,304 @@
+{
+	"info": {
+		"name": "Segundo_parcial_programacion",
+		"_postman_id": "37fa8543-df36-4e89-3cab-3daeacf970bb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Empleado",
+			"description": "",
+			"item": [
+				{
+					"name": "Alta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "miguel",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "apellido",
+									"value": "jimenez",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "miguel@hotmail.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "foto",
+									"value": "",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "legajo",
+									"value": "333",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "hola",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "perfil",
+									"value": "user",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/ejercicios/segundo_parcial_prog/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"ejercicios",
+								"segundo_parcial_prog",
+								""
+							]
+						},
+						"description": "Agrega un empleado a la base de datos DonFuBD"
+					},
+					"response": []
+				},
+				{
+					"name": "Verificar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "pedro@hotmail.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "clave",
+									"value": "nose",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/ejercicios/segundo_parcial_prog/email/clave",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"ejercicios",
+								"segundo_parcial_prog",
+								"email",
+								"clave"
+							]
+						},
+						"description": "Verifica si existe o no un empleado."
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost/ejercicios/segundo_parcial_prog/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"ejercicios",
+								"segundo_parcial_prog",
+								""
+							]
+						},
+						"description": "Retorna un array con formato JSON de los empleados de la base de datos DonFuBD."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"description": "",
+			"item": [
+				{
+					"name": "Alta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "pepinillo",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "precio",
+									"value": "20",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/ejercicios/segundo_parcial_prog/productos/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"ejercicios",
+								"segundo_parcial_prog",
+								"productos",
+								""
+							]
+						},
+						"description": "Agrega un nuevo producto a la base DonFuBD."
+					},
+					"response": []
+				},
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost/ejercicios/segundo_parcial_prog/productos/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"ejercicios",
+								"segundo_parcial_prog",
+								"productos",
+								""
+							]
+						},
+						"description": "Retornar un array con formato JSON de todos los productos de la base de datos DonFuBD."
+					},
+					"response": []
+				},
+				{
+					"name": "Modificacion",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "pepinillo",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "precio",
+									"value": "20",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/ejercicios/segundo_parcial_prog/productos/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"ejercicios",
+								"segundo_parcial_prog",
+								"productos",
+								""
+							]
+						},
+						"description": "Modifica un producto existente de la base DonFuBD."
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminacion",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "3",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/ejercicios/segundo_parcial_prog/productos/",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"ejercicios",
+								"segundo_parcial_prog",
+								"productos",
+								""
+							]
+						},
+						"description": "Elimina un producto existente de la base DonFuBD."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
