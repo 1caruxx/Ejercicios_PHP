@@ -59,10 +59,15 @@ Los lenguajes tratados fueron:
     </tbody>
 </table>
 
+## Profesores
+
+* Maximiliano Neiner
+* Mario Rampi
+
 ## Autor
 
 * Fernando Lareu - [1caruxx](https://github.com/1caruxx)
 
 # License
 
-This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/1caruxx/Programacion_III/blob/master/LICENSE) file for details.
